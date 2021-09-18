@@ -33,7 +33,7 @@
     $ php artisan key:generate
     $ php artisan migrate
     ```
-- If running in dev or local computer run `$ php artisan serve` to initialize a web server (no need for an apache server) you just need to a Php version 7.3+ installed
+- If running in dev or local computer run `$ php artisan serve` to initialize a web server (no need for an apache server) you just need PHP version 7.3+ installed
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
