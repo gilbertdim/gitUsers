@@ -28,11 +28,12 @@
     ```
 - Open a terminal and navigate into the project directory
 - Run the following command
-```
-$ composer install
-$ php artisan key:generate
-$ php artisan migrate
-```
+    ```
+    $ composer install
+    $ php artisan key:generate
+    $ php artisan migrate
+    ```
+- If running in dev or local computer run `$ php artisan serve` to initialize a web server (no need for an apache server) you just need to a Php version 7.3+ installed
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
