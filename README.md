@@ -1,3 +1,40 @@
+## Installation Guidelines
+
+- Clone Repository
+- Copy or rename the `.env.example` to `.env`
+    - Setup the MySQL database connection.
+    - This system sends a verification email so please setup the MAIL_* configuration.
+    ```
+    # Gmail Configuration
+    MAIL_MAILER=smtp
+    MAIL_HOST=smtp.gmail.com
+    MAIL_PORT=587
+    MAIL_USERNAME={your email address}
+    MAIL_PASSWORD={your email password}
+    MAIL_ENCRYPTION=tls
+    MAIL_FROM_ADDRESS={your email address}
+    MAIL_FROM_NAME="{your name}"
+    # NOTE: Turn ON the less secure apps for this application to use your email. https://support.google.com/accounts/answer/6010255?hl=en
+    
+    # Mailtrap Configuration
+    MAIL_MAILER=smtp
+    MAIL_HOST=smtp.mailtrap.io
+    MAIL_PORT=2525
+    MAIL_USERNAME=MAILTRAP_USERNAME
+    MAIL_PASSWORD=MAILTRAP_PASSWORD
+    MAIL_ENCRYPTION=null
+    MAIL_FROM_ADDRESS={your email address}
+    MAIL_FROM_NAME="{your name}"
+    ```
+- Open a terminal and navigate into the project directory
+- Run the following command
+    ```
+    $ composer install
+    $ php artisan key:generate
+    $ php artisan migrate
+    ```
+- If running in dev or local computer run `$ php artisan serve` to initialize a web server (no need for an apache server) you just need PHP version 7.3+ installed
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
