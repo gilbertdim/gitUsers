@@ -72,6 +72,12 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('git.users')" :active="request()->routeIs('git.users')">
+                {{ __('Git User') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('challenge.hamming.distance')" :active="request()->routeIs('challenge.hamming.distance')">
+                {{ __('Hamming Distance') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
