@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('git/user/{login}', [ \App\Http\Controllers\GitUserController::class, 'getUser' ]);
+Route::get('git/users', [ \App\Http\Controllers\GitUserController::class, 'apiGetUsers' ]);
+
 Route::middleware('auth:web')->group(function(){
 
     Route::post('challenge/hamming/distance', [
         \App\Http\Controllers\Challenge\HammingDistanceController::class, 'calculate'
     ])->name('calc.hamming.distance');
-    
+
 });
 
 

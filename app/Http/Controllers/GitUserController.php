@@ -21,6 +21,18 @@ class GitUserController extends Controller
         ]);
     }
 
+    public function getUser($login)
+    {
+        $this->search($login);
+
+        return response()->json(collect($this->getUsers())->sortBy('name'));
+    }
+
+    public function apiGetUsers()
+    {
+        return response()->json($this->callAPIUsers());
+    }
+
     private function addUser($userInfo)
     {
         $users = $this->getUsers();
@@ -55,12 +67,12 @@ class GitUserController extends Controller
         return (json_decode(Redis::get('gitUsers')) ?? array());
     }
 
-    public function getGitUsers()
+    private function callAPIUsers()
     {
         $users = $this->getUsers();
-        
+
         if(count($users) < 10)
-        {    
+        {
             Log::channel('info')->info("Consumming 'https://api.github.com/users' Git API");
             $gitUsers = APIController::get(
                 'https://api.github.com/users', 
@@ -75,10 +87,7 @@ class GitUserController extends Controller
                 if(property_exists($gitUsers, 'message'))
                 {
                     Log::channel('error')->alert("{$gitUsers->message}\n{$gitUsers->documentation_url}");
-                    return view('git/users/index', [
-                        'users' => [],
-                        'error' => $gitUsers
-                    ]);
+                    return $gitUsers;
                 }
     
             foreach($gitUsers as $user)
@@ -97,16 +106,30 @@ class GitUserController extends Controller
                         if(property_exists($userInfo, 'message'))
                         {
                             Log::channel('error')->alert("{$userInfo->message}\n{$userInfo->documentation_url}");
-                            return view('git/users/index', [
-                                'users' => [],
-                                'error' => $userInfo
-                            ]);
+                            return $userInfo;
                         }
         
                     $this->addUser($userInfo);
                 }
-            }    
+            }
         }
+
+        return $users;
+    }
+
+    public function getGitUsers()
+    {        
+        $gitUsers = $this->callAPIUsers();
+
+        if(is_object($userInfo))
+            if(property_exists($userInfo, 'message'))
+            {
+                Log::channel('error')->alert("{$userInfo->message}\n{$userInfo->documentation_url}");
+                return view('git/users/index', [
+                    'users' => [],
+                    'error' => $gitUsers
+                ]);
+            }
 
         return back();
     }
