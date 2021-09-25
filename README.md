@@ -1,3 +1,6 @@
+## Demo 
+http://ec2-18-140-51-207.ap-southeast-1.compute.amazonaws.com/
+
 ## Installation Guidelines
 
 - Clone Repository
